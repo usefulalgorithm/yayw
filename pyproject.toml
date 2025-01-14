@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "yayw"
+version = "0.1.0"
+description = "Yap all you want to Threads"
+authors = ["Tsung-Ju Lii <usefulalgorithm@gmail.com>"]
+license = "GPL-2"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+httpx = "^0.28.1"
+loguru = "^0.7.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.1"
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
