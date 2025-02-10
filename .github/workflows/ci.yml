@@ -1,0 +1,22 @@
+name: CI
+on: pull_request
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: true
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - uses: abatilo/actions-poetry@v3
+        with:
+          poetry-version: 1.8.5
+      - run: poetry install
+      - run: poetry run pytest
+      - uses: MishaKav/pytest-coverage-comment@v1
+        with:
+          pytest-xml-coverage-path: reports/coverage.xml
+    

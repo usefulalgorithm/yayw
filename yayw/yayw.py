@@ -11,6 +11,10 @@ class YAYW:
     def __init__(
         self, user_id: str, access_token: str, chunk_threshold: int = 500
     ) -> None:
+        if not user_id or not access_token:
+            logger.error(
+                "Missing user id or access token, please configure YAYW_USER_ID and YAYW_ACCESS_TOKEN"
+            )
         self._base_url = "https://graph.threads.net/v1.0"
         self._user_id = user_id
         # TODO think refresh mechanism
@@ -60,8 +64,8 @@ class YAYW:
 
 def yayw(
     path: str,
-    user_id: str = os.environ["YAYW_USER_ID"],
-    access_token: str = os.environ["YAYW_ACCESS_TOKEN"],
+    user_id: str = os.environ.get("YAYW_USER_ID", ""),
+    access_token: str = os.environ.get("YAYW_ACCESS_TOKEN", ""),
     max_post_length: int = int(os.environ.get("YAYW_MAX_POST_LENGTH", 500)),
 ):
     YAYW(user_id, access_token, max_post_length).run(path)
