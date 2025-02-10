@@ -3,6 +3,8 @@ on: pull_request
 
 jobs:
   ci:
+    permissions:
+      pull-requests: write
     strategy:
       fail-fast: true
     runs-on: "ubuntu-latest"
