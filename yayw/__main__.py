@@ -1,6 +1,6 @@
 import sys
-from yayw import yayw
+from yayw.yayw import run
 
 
 if __name__ == "__main__":
-    yayw(sys.argv[1])
+    run(sys.argv[1])
