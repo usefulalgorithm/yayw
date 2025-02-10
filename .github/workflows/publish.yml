@@ -1,0 +1,41 @@
+name: Publish
+
+run-name: Publishing ${{ github.event.release.tag_name }}
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  PYTHON_VERSION: 3.12
+  POETRY_VERSION: 2.0.1
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+  
+      - uses: abatilo/actions-poetry@v4.0.0
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+  
+      - run: poetry install
+
+      - name: Build package
+        run: poetry build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
