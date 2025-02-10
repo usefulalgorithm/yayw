@@ -34,9 +34,8 @@ jobs:
           poetry-version: ${{ env.POETRY_VERSION }}
   
       - run: poetry install
-
-      - name: Build package
-        run: poetry build
+      - run: poetry self add poetry-dynamic-versioning
+      - run: poetry build
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
