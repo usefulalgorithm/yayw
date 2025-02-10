@@ -5,6 +5,7 @@ description = "Yap all you want to Threads"
 authors = ["Tsung-Ju Lii <usefulalgorithm@gmail.com>"]
 license = "GPL-2"
 readme = "README.md"
+packages = [{ include = "yayw" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -12,6 +13,7 @@ httpx = "^0.28.1"
 loguru = "^0.7.3"
 langdetect = "^1.0.9"
 poetry = "^2.0.1"
+click = "^8.1.8"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.9.1"
@@ -19,6 +21,8 @@ pre-commit = "^4.0.1"
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 
+[tool.poetry.scripts]
+yayw = "yayw:yayw"
 
 [tool.poetry-dynamic-versioning]
 enable = true

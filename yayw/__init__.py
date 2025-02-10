@@ -1,1 +1,1 @@
-from .yayw import yayw  # noqa: F401
+from .yayw import run as yayw  # noqa: F401

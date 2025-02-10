@@ -13,6 +13,12 @@ _CHAR_SEGMENTED_LANGS = {
 
 class Splitter:
     def __init__(self, max_characters_per_post: int = 500) -> None:
+        """
+        Initialize the Splitter with a maximum character limit per post.
+
+        Args:
+            max_characters_per_post (int): The maximum number of characters allowed per post. Defaults to 500.
+        """
         self._post_char_limit = max_characters_per_post
         self._page_number_char_count = 10
 
@@ -21,7 +27,7 @@ class Splitter:
         return self._post_char_limit - self._page_number_char_count
 
     def _add_page_number(self, posts: List[str]) -> List[str]:
-        return [f"{post} ({i+1}/{len(posts)})" for i, post in enumerate(posts)]
+        return [f"{post} ({i + 1}/{len(posts)})" for i, post in enumerate(posts)]
 
     def _split_space_segmented_text(self, text: str) -> List[str]:
         posts: List[str] = []
@@ -45,6 +51,9 @@ class Splitter:
             # No need to split, just return it
             return [text]
 
+        # Determine the language of the text
+        # If the language is in _CHAR_SEGMENTED_LANGS, split by characters
+        # Otherwise, split by spaces
         posts = (
             self._split_char_segmented_text(text)
             if langdetect.detect(text) in _CHAR_SEGMENTED_LANGS
